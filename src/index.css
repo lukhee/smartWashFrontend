@@ -5,10 +5,11 @@ body {
   font-family: 'Baloo Paaji 2', cursive;
   background: white;
   color: black;
-  -moz-box-sizing: border-box;
+  /* -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow: auto
+  box-sizing: border-box;*/
+  overflow: auto ;
+  width: 100%
 }
 
 h1, h2, h3, h4, h5, h6 {
