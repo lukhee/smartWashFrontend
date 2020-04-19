@@ -2,10 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {Button} from 'components/utility'
+
 import { Link } from 'react-router-dom'
 import car from '../../image/LandingPageImages/car4.jpg'
 
 const DescribDiv = styled.div`
+
     background: #3384f0;
     height: 100vh;
     min-height: 100vh;
@@ -16,6 +18,7 @@ const DescribDiv = styled.div`
 
 const LandingPage = ({})=> {
     return (
+
         <div className="container-fluid"> 
             <div className="fixed-top pl-4 text-light text-weight-bold pt-2">
                 <h3>
@@ -37,6 +40,7 @@ const LandingPage = ({})=> {
                 </div>
             </div>
         </div>
+
     )
 }
 
