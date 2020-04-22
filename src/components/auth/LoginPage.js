@@ -27,7 +27,7 @@ const LoginPage = ({login, isAuthenticated}) => {
 
     // Redirect if authenticated
     if(isAuthenticated) {
-        return <Redirect to='/profile' />
+        return <Redirect to='/dashboard' />
     }
 
     return (

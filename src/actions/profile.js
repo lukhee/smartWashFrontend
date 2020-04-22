@@ -34,6 +34,38 @@ export const getProfile = ()=> async dispatch => {
     }
 }
 
+// Create Profile
+export const createProfile = (formData)=> async dispatch => {
+    console.log(formData)
+    const config = {
+        headers : {
+            'Content-Type': 'application/json',
+            'x-auth-token': localStorage.token
+        }
+    }
+
+    try {
+        const res = await api.post('/profile', formData,  config )
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        })
+
+    } catch (error) { 
+        const errors = error.response.data.errors;
+        console.log(errors)
+
+        if(errors){
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        }
+
+        dispatch({
+            type: PROFILE_FAILED,
+            payload: { msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
 // Add Location
 export const addLocation = (formData)=> async dispatch => {
     console.log(formData)
@@ -140,6 +172,33 @@ export const deleteCar = (id)=> async dispatch => {
         })
 
         dispatch(setAlert('Location deleted successfully', 'success'))
+    } catch (error) {
+        const errors = error.response.data.errors;
+        console.log(errors)
+
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
+// Request for Wash
+export const requestWash = (data)=> async dispatch => {
+    const config = {
+        headers : {
+            'x-auth-token': localStorage.token
+        }
+    }
+
+    try {
+        const res = await api.post (`profile/request_wash`, data, config )
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert('Reqeust was successfully', 'success'))
     } catch (error) {
         const errors = error.response.data.errors;
         console.log(errors)

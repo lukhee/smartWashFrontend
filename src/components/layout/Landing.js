@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {Button} from 'components/utility'
+import {connect} from 'react-redux'
 
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import car from '../../image/LandingPageImages/car4.jpg'
 
 const DescribDiv = styled.div`
@@ -16,16 +16,15 @@ const DescribDiv = styled.div`
     overflow: auto;
 `
 
-const LandingPage = ({})=> {
+const LandingPage = ({isAuthenticated})=> {
+    if(isAuthenticated){
+        return(
+            <Redirect to="/dashboard" />
+        )
+    }
     return (
 
         <div className="container-fluid"> 
-            <div className="fixed-top pl-4 text-light text-weight-bold pt-2">
-                <h3>
-                    <i className="fas fa-car pr-2"/> SmartWash
-                </h3>
-            </div>
-
             <div className="row">
                 <DescribDiv className="col-md-6 d-flex text-center">
                     <div className="text-light my-auto mt-5 w-100">
@@ -45,7 +44,13 @@ const LandingPage = ({})=> {
 }
 
 LandingPage.propTypes = {
-
+    isAuthenticated: PropTypes.bool.isRequired
 }
 
-export default LandingPage
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    }
+}
+
+export default connect(mapStateToProps) (LandingPage)

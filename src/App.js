@@ -7,6 +7,7 @@ import NavBar from 'components/layout/NavBar'
 import Alert from 'components/layout/alert'
 import Profile from 'components/profile/profile'
 import DashBoard from 'components/dashBoard/dashBoard'
+import Booking from 'components/dashBoard/booking'
 import PrivateRoute from 'components/routing/PrivateRoute'
 import { loadUser } from './actions/auth'
 // Redux
@@ -22,17 +23,20 @@ const App = ()=> {
     return (
         <Provider store={store}>
             <Fragment>
-            {/* <NavBar/> */}
-            <Alert/>
                 <Router>
-                    <Route exact  path="/" component={LandingPage} />
-                    <Switch>
-                        <Route exact  path="/login" component={LoginPage} />
-                        <Route exact  path="/register" component={Register} />
-                        <PrivateRoute exact  path="/Profile" component={Profile} />
-                        <PrivateRoute exact  path="/dashboard" component={DashBoard} />
-                        {/* <Route component={Routes} /> */}
-                    </Switch>
+                    <NavBar/>
+                        <Route exact  path="/" component={LandingPage} />
+                        <section style={{marginTop: "70px"}}>
+                            <Alert/>
+                            <Switch>
+                                <Route exact  path="/login" component={LoginPage} />
+                                <Route exact  path="/register" component={Register} />
+                                <PrivateRoute exact  path="/Profile" component={Profile} />
+                                <PrivateRoute exact  path="/dashboard" component={DashBoard} />
+                                <PrivateRoute exact  path="/booking" component={Booking} />
+                                {/* <Route component={Routes} /> */}
+                            </Switch>
+                        </section>
                 </Router>
             </Fragment>
         </Provider>

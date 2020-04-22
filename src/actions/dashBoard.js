@@ -21,8 +21,6 @@ export const getPackage = ()=> async dispatch => {
             type: GET_PACKAGE,
             payload: res.data
         })
-        
-        dispatch(getProfile())
     } catch (error) {
         const errors = error.response;
         console.log(errors)

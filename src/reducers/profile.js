@@ -2,7 +2,8 @@ import {
     GET_PROFILE,
     PROFILE_FAILED,
     UPDATE_PROFILE,
-    UPDATE_ERROR
+    UPDATE_ERROR,
+    CLEAR_PROFILE
  } from "../actions/consTypes"
 
 const initialState = {
@@ -22,6 +23,7 @@ export default function(state=initialState, action){
             loading: false
         }
         case PROFILE_FAILED:
+        case CLEAR_PROFILE:
         return {
             ...state,
             profile: null,

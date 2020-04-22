@@ -1,11 +1,11 @@
 import { 
     REGISTER_FAILURE, 
-    // REGISTER_SUCCESS, 
+    REGISTER_SUCCESS, 
     AUTH_ERROR, 
     USER_LOADED, 
     LOGIN_SUCCESS, 
     // LOGIN_FAIL, 
-    // LOGOUT, 
+    LOGOUT, 
     // ACCOUNT_DELETED
  } from "../actions/consTypes"
 
@@ -27,7 +27,7 @@ export default function(state=initialState, action){
             loading: false,
             isAuthenticated: true
         }
-        // case REGISTER_SUCCESS:
+        case REGISTER_SUCCESS:
             case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.token)
             return {
@@ -40,7 +40,7 @@ export default function(state=initialState, action){
         case REGISTER_FAILURE: 
         case AUTH_ERROR:
         // case LOGIN_FAIL:
-        // case LOGOUT:
+        case LOGOUT:
         // case ACCOUNT_DELETED:
         localStorage.removeItem('token');
         return {
