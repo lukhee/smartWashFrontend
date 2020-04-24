@@ -2,9 +2,8 @@ import {
     GET_PACKAGE,
     PACKAGE_ERROR,
     } from './consTypes'
-import { setAlert } from './alert'
+// import { setAlert } from './alert'
 import api from 'components/ApiUtility/baseApi'
-import { getProfile } from "./profile"
 
 
 // Load Profile

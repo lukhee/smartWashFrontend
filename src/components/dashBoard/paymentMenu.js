@@ -13,7 +13,7 @@ const PaymentMenu = ({onChange, selectedDate, show, onClickShow})=> {
                 placeholderText="Click to select a date" 
                 selected={selectedDate}
                 onChange={(date)=>onChange(date)}
-                minDate={new Date}
+                minDate={new Date()}
                 dateFormat="MMMM d, yyyy h:mm aa"
                 showTimeInput
                 />

@@ -1,13 +1,21 @@
 import React, {Fragment} from 'react'
+import styled from 'styled-components'
 
-const UserPage = ({user}) => {
+const UserDiv = styled.div`
+    box-shadow: rgb(184, 196, 194) 0px 4px 10px -4px;
+`
+
+const UserPage = ({user, phone_no}) => {
     return (
-        <div>
-            <h4> User Page </h4>
+        <UserDiv className="p-3 rounded text-center bg-white mb-3">
             <Fragment>
-                <p> from user</p>
+                <img src={user.avatar} alt="image here" className="img-fluid  rounded mb-2" />
+                <h5 className="pb-2"> {user.name} </h5>
+                <p className="text-secondary"> {phone_no} </p>
+                <p className="text-primary"> {user.email} </p>
+                <button className="btn btn-sm btn-primary"> Edit profile  </button>
             </Fragment>
-        </div>
+        </UserDiv>
     )
 }
 

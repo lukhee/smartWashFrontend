@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react'
+import React, {useState} from 'react'
 import {connect} from "react-redux"
 import PropTypes from 'prop-types'
 import {addLocation, deleteLocation} from '../../actions/profile'
@@ -35,7 +35,7 @@ const Location = ({addLocation, deleteLocation, locations}) => {
 
     return (
         <div className="container">
-            <h4> Location Page </h4>
+            <h4> <span> <i className="fas fa-map-marker-alt text-warning"></i> </span> Address </h4>
             <div>
                 <div className="row justify-content-between mb-2">
                     { locations.length > 0 &&

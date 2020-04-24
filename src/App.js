@@ -26,7 +26,7 @@ const App = ()=> {
                 <Router>
                     <NavBar/>
                         <Route exact  path="/" component={LandingPage} />
-                        <section style={{marginTop: "70px"}}>
+                        <section>
                             <Alert/>
                             <Switch>
                                 <Route exact  path="/login" component={LoginPage} />

@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {getProfile, requestWash} from '../../actions/profile'
@@ -11,7 +11,7 @@ import ProgressBar from '../layout/progreeBar'
 import Spinner from '../layout/spinner/spinner'
 import Review from './review'
 
-const Booking = ({getProfile, getPackage, requestWash, profile, dashboard: {packageMenu, loading}}) => {
+const Booking = ({getProfile, getPackage, requestWash, history, profile, dashboard: {packageMenu, loading}}) => {
     useEffect(()=>{
         getPackage() 
         getProfile()
@@ -30,7 +30,7 @@ const Booking = ({getProfile, getPackage, requestWash, profile, dashboard: {pack
     const [showValue, setShow] = useState(1)
 
     const {
-        car, location, selectedDate, paymentMethod, pkg, add_on, totalCost
+        car, location, selectedDate, pkg, add_on, totalCost
     } = formData
 
     const onClick = (value, e) => {
@@ -66,7 +66,7 @@ const Booking = ({getProfile, getPackage, requestWash, profile, dashboard: {pack
 
     const submitBooking = ()=> {
         let addOn = ''
-        if(add_on.name != ''){
+        if(add_on.name !== ''){
             addOn = ' , ' + add_on.name
         }
 
@@ -77,7 +77,7 @@ const Booking = ({getProfile, getPackage, requestWash, profile, dashboard: {pack
             totalCost: totalCost, 
             package: pkg.name + addOn
         }
-        requestWash(data)
+        requestWash(data, history)
     }
 
     return packageMenu === null && loading ? (<Spinner/>) :
@@ -161,4 +161,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getProfile, getPackage, requestWash}) (Booking)
+export default connect(mapStateToProps, {getProfile, getPackage, requestWash}) (withRouter(Booking))

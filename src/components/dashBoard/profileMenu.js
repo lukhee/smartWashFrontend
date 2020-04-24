@@ -11,7 +11,7 @@ const ProfileMenu = ({profileData: {car, location}, onClick, show, onClickShow, 
         <div className="p-4">
             <h5 className="mb-3">  Car and address package for home </h5>
             {
-                car.length != 0 && location.length != 0 ?  
+                car.length !== 0 && location.length !== 0 ?  
                 <>
                     <div className="row justify-content-around border-bottom">
                         {car.map(car=> 

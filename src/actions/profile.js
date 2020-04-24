@@ -184,7 +184,7 @@ export const deleteCar = (id)=> async dispatch => {
 }
 
 // Request for Wash
-export const requestWash = (data)=> async dispatch => {
+export const requestWash = (data, history)=> async dispatch => {
     const config = {
         headers : {
             'x-auth-token': localStorage.token
@@ -199,6 +199,8 @@ export const requestWash = (data)=> async dispatch => {
         })
 
         dispatch(setAlert('Reqeust was successfully', 'success'))
+        
+        history.push('/dashboard')
     } catch (error) {
         const errors = error.response.data.errors;
         console.log(errors)

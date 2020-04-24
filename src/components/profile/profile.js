@@ -4,10 +4,16 @@ import { getProfile, createProfile } from '../../actions/profile'
 import PropTypes from 'prop-types'
 import Car from './car'
 import Location from './location'
-import Request from './request'
 import UserPage from './userPage'
 import Spinner from '../layout/spinner/spinner'
 import CreateProfile from './profileForms/createProfile'
+import styled from 'styled-components'
+
+const ProfileDiv = styled.div`
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+`
 
 const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth: { isAuthenticated, user} }) => {
     useEffect(()=>{
@@ -37,8 +43,7 @@ const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth:
 
     return loading && profile === null ? 
         <Spinner /> :
-        <div className="container">
-            <h2 className="d-inline"> Profile Page </h2>
+        <ProfileDiv className="container-fluid bg-light">
             <Fragment>
                 {profile === null ?
                     (<> 
@@ -57,21 +62,26 @@ const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth:
                         />
                     </>) 
                         :
-                    (<div className="row justify-content-between"> 
-                        <div className="col-sm-4">
-                            <UserPage user={user} />
-                        </div>
-                        <div className="col-sm-8">
-                            <Location locations={profile.location}/>
-                            <Car cars={profile.car} />
-                            <Request request={profile.request}/>
-                        </div>
-                        
-                        <button className="btn btn-danger btn-sm px-5 mb-4"> Delete Account </button>
-                    </div>)
+                        <>
+                            <div className="row justify-content-around"> 
+                                <div className="col-sm-3">
+                                    <UserPage user={user}
+                                        phone_no = {profile.contact.home}
+                                    />
+                                </div>
+                                <div className="col-sm-8">
+                                    <Location locations={profile.location}/>
+                                    <Car 
+                                        cars={profile.car}
+                                    />
+                                    {/* <Request request={profile.request}/> */}
+                                </div>
+                            </div>
+                            <button className="btn btn-danger btn-sm px-5 mb-4 float-right"> Delete Account </button>
+                        </>
                 }
             </Fragment>
-        </div>
+        </ProfileDiv>
 }
 
 Profile.propTypes = {
