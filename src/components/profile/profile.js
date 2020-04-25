@@ -77,7 +77,9 @@ const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth:
                                     {/* <Request request={profile.request}/> */}
                                 </div>
                             </div>
-                            <button className="btn btn-danger btn-sm px-5 mb-4 float-right"> Delete Account </button>
+                            <div className="text-right pr-4">
+                                <button className="btn btn-outline-danger btn-sm px-5 mb-4"> Delete Account </button>
+                            </div>
                         </>
                 }
             </Fragment>

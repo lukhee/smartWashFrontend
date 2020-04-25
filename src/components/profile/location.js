@@ -1,7 +1,20 @@
 import React, {useState} from 'react'
-import {connect} from "react-redux"
+import {connect} from "react-redux" 
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import {addLocation, deleteLocation} from '../../actions/profile'
+
+const P = styled.p`
+    font-size: 12px;
+`
+
+const LocationDiv = styled.div`
+    box-shadow: rgb(184, 196, 194) 0px 4px 10px -4px;
+    &:hover {
+        background: #f8f9fa;
+        box-shadow: rgb(184, 196, 194) 0px 9px 10px -4px;
+    }
+`
 
 const Location = ({addLocation, deleteLocation, locations}) => {
     const [formData, setForm] = useState({
@@ -32,28 +45,33 @@ const Location = ({addLocation, deleteLocation, locations}) => {
         })
     }
 
+    const toggleForm = () => {
+        setForm({street: '', state: '', country: ''})
+        setLocation(!showLocation)
+    }
+
 
     return (
-        <div className="container">
+        <div className="container mb-5  bg-white rounded p-3">
             <h4> <span> <i className="fas fa-map-marker-alt text-warning"></i> </span> Address </h4>
             <div>
-                <div className="row justify-content-between mb-2">
+                <div className="row justify-content-between mb-2 m-0">
                     { locations.length > 0 &&
                         ( locations.map(location => (
-                                <div key={location._id} className="col-sm-3 mb-2 border d-flex justify-content-between">
-                                    <p> {location.street}, {location.state}, {location.country}. </p>
-                                    <p className="btn text-danger" onClick={()=> deleteLocation(location._id)}> X </p>
-                                </div>
+                                <LocationDiv key={location._id} className="col-sm-3 rounded bg-white p-2 mb-2 border d-flex justify-content-between">
+                                    <P className="mb-0 my-auto"> {location.street}, {location.state}, {location.country}. </P>
+                                    <p className="btn text-danger my-auto" onClick={()=> deleteLocation(location._id)}> <i className="far fa-trash-alt"></i> </p>
+                                </LocationDiv>
                             )
                         ))
                     }
                 </div>
 
                 {/* Add new Location */}
-                <div>
+                <div className="col-md-6 m-auto p-2">
                     {
                         showLocation && 
-                        <form className="form" onSubmit = {(e) => onSubmit(e)}>
+                        <form style={{  boxShadow: "rgb(184, 196, 194) 0px 10px 10px -4px" }} className="form border p-2 rounded mb-3" onSubmit = {(e) => onSubmit(e)}>
                             <input 
                                 name="street"
                                 className="form-control form-control-sm my-2" 
@@ -76,16 +94,16 @@ const Location = ({addLocation, deleteLocation, locations}) => {
                                 placeholder="enter Country" />
 
                             <div>
-                                <input className="form-control w-50" type="submit" />
-                                <button onClick={()=>setLocation(!showLocation)}> cancel </button>
+                                <input className="form-control btn btn-light mb-3" type="submit" />
                             </div>
-                            </form>
+                        </form>
                     }
-                </div>
-                {
-                    !showLocation && 
-                    <button onClick={()=>setLocation(!showLocation)}> Add Location </button>
-                }
+                </div> 
+                    <LocationDiv className="p-3 text-center border rounded" onClick={()=>toggleForm()}>
+                        {
+                            !showLocation? <> <i class="fas fa-plus text-primary"></i>  Add Location </> :  <> <i className="fas fa-minus text-danger"></i>  Close Form </>
+                        } 
+                    </LocationDiv>
             </div>
         </div>
     )

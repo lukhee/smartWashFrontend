@@ -12,8 +12,8 @@ const UserPage = ({user, phone_no}) => {
                 <img src={user.avatar} alt="image here" className="img-fluid  rounded mb-2" />
                 <h5 className="pb-2"> {user.name} </h5>
                 <p className="text-secondary"> {phone_no} </p>
-                <p className="text-primary"> {user.email} </p>
-                <button className="btn btn-sm btn-primary"> Edit profile  </button>
+                <p className="text-warning"> {user.email} </p>
+                <button className="btn btn-sm btn-outline-primary"> Edit profile  </button>
             </Fragment>
         </UserDiv>
     )
