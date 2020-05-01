@@ -1,44 +1,53 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import { PickUp } from '../../images/svg/cars/index'
 
 const PackageDiv = styled.div`
-    color:${p=> p.isSelected === true ? 'red !important' : null };
+    font-size: 13px;
+    cursor: pointer;
+    /* color:${p=> p.isSelected === true ? 'red !important' : null }; */
+    background:${p=> p.isSelected === true ? '#007bff1c !important' : null };
+    box-shadow: rgb(184, 196, 194) 0px 4px 10px -4px;
+    &:hover {
+        background: #f8f9fa;
+        box-shadow: rgb(184, 196, 194) 0px 9px 10px -4px;
+    }
 `
 
 const ProfileMenu = ({profileData: {car, location}, onClick, show, onClickShow, stateCar, stateLocation})=> {
     return show === 1 &&
-        <div className="p-4">
-            <h5 className="mb-3">  Car and address package for home </h5>
+        <div className="m-2">
+            <h5 className="mb-3"> <i className="fas fa-car"></i> Pick Your Car </h5>
             {
                 car.length !== 0 && location.length !== 0 ?  
                 <>
-                    <div className="row justify-content-around border-bottom">
+                    <div className="row justify-content-around border-bottom pb-3">
                         {car.map(car=> 
                             <PackageDiv 
                                 isSelected = {stateCar._id === car._id ? true : false}
                                 id="car"
-                                className="bg-light mr-2 mb-2 px-5 py-2 btn col-sm-3" 
+                                className="bg-light col-sm-3 mb-3 d-flex justify-content-between p-2" 
                                 key={car._id}
                                 onClick={e=>onClick(car, e)}>
-                                <p> <span className="font-weight-bold">{car.brand} </span>  {car.color} </p>
-                                <p className="lead"> {car.plate_no} </p>
+                                <span className="d-flex align-items-center"> <span className="font-weight-bold">{car.brand} </span>  {car.color} {car.plate_no} </span>
+                                <div className="w-25 h-100 rounded-circle bg-white p-1"> <PickUp/> </div>
                             </PackageDiv>
                         )}
                     </div>
 
-                    <div className="mt-2">
-                        <h5> Select Address </h5>
-                        <div className="row justify-content-around mt-2">
+                    <div className="my-3">
+                        <h5> <i className="fas fa-house-user"></i> Select Address </h5>
+                        <div className="row justify-content-around mt-1">
                         {location.map(location=> 
                             <PackageDiv 
                                 isSelected = {stateLocation._id === location._id ? true : false}
                                 id="location"
-                                className="bg-light mr-2 mb-2 px-5 py-2 btn col-sm-3" 
+                                className="bg-light col-sm-3 mb-3 d-flex justify-content-between p-2" 
                                 key={location._id}
                                 onClick={e=>onClick(location, e)}>
-                                <p> <span className="font-weight-bold">{location.street} </span>  {location.state} </p>
-                                <p className="lead"> {location.country} </p>
+                                <span className="text-center"> <span className="font-weight-bold">{location.street} </span>  {location.state} {location.country} </span>
+                                {/* <span className="w-25 h-100 rounded-circle bg-white p-1"> <i className="fas fa-house-user"></i> </span> */}
                             </PackageDiv>
                         )}
                         </div>

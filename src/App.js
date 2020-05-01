@@ -7,6 +7,7 @@ import NavBar from 'components/layout/NavBar'
 import Alert from 'components/layout/alert'
 import Profile from 'components/profile/profile'
 import DashBoard from 'components/dashBoard/dashBoard'
+import Request from 'components/profile/request'
 import Booking from 'components/dashBoard/booking'
 import PrivateRoute from 'components/routing/PrivateRoute'
 import { loadUser } from './actions/auth'
@@ -34,6 +35,7 @@ const App = ()=> {
                                 <PrivateRoute exact  path="/Profile" component={Profile} />
                                 <PrivateRoute exact  path="/dashboard" component={DashBoard} />
                                 <PrivateRoute exact  path="/booking" component={Booking} />
+                                <PrivateRoute exact  path="/request" component={Request} />
                                 {/* <Route component={Routes} /> */}
                             </Switch>
                         </section>

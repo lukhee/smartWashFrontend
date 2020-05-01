@@ -14,14 +14,14 @@ const Tracker = styled.div`
 const InnerTracker = styled.div`
     width : ${p => p.value}%;
     height: 100%;
-    background: #ffc30f;
+    /* background: #ffc30f; */
     border-radius: 4px;
 `
 
 const ProgressBar = ({showValue}) => {
     return (
         <Tracker>
-            <InnerTracker value = {showValue * 25} />
+            <InnerTracker className="bg-danger" value = {showValue * 25} />
         </Tracker>
     )
 }

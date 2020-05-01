@@ -81,8 +81,8 @@ const Booking = ({getProfile, getPackage, requestWash, history, profile, dashboa
     }
 
     return packageMenu === null && loading ? (<Spinner/>) :
-        <div className="container">
-            <h1> DashBoard </h1>
+        <div className="container py-5 my-2 bg-light">
+            <h1> Booking </h1>
             {profile.profile === null && profile.loading === false ? 
             <>
             <p> Your profile is empty, please create one.</p> 
@@ -92,7 +92,7 @@ const Booking = ({getProfile, getPackage, requestWash, history, profile, dashboa
             <>
             <ProgressBar showValue = {showValue} />
 
-                <div className="border border-warning p-3 mb-5">
+                <div className="bg-white p-3 mb-5">
                     {showValue > 1 && <h3 onClick={()=> setShow(showValue - 1)}> <i className="fas fa-arrow-left"></i> </h3> }
                     
                     <div>
@@ -132,15 +132,13 @@ const Booking = ({getProfile, getPackage, requestWash, history, profile, dashboa
                 </div>
 
                 {showValue < 4 && 
-                    <div className="bg-light fixed-bottom d-flex justify-content-between container py-2"> 
+                    <div style={{background: "#0c5cb1"}} className="text-white fixed-bottom d-flex justify-content-between container py-2"> 
                         <h5> Total cost</h5>
                         <h5 className="text-weigth-bold"> {totalCost}:00  </h5>
                     </div>
                 }
             </>
             }
-            
-            
         </div>
 }
 

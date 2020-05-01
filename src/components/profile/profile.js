@@ -64,12 +64,12 @@ const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth:
                         :
                         <>
                             <div className="row justify-content-around"> 
-                                <div className="col-sm-3">
+                                <div className="col-md-3">
                                     <UserPage user={user}
                                         phone_no = {profile.contact.home}
                                     />
                                 </div>
-                                <div className="col-sm-8">
+                                <div className="col-md-8">
                                     <Location locations={profile.location}/>
                                     <Car 
                                         cars={profile.car}

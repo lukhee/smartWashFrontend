@@ -52,7 +52,7 @@ const Location = ({addLocation, deleteLocation, locations}) => {
 
 
     return (
-        <div className="container mb-5  bg-white rounded p-3">
+        <div className="mb-5  bg-white rounded p-3">
             <h4> <span> <i className="fas fa-map-marker-alt text-warning"></i> </span> Address </h4>
             <div>
                 <div className="row justify-content-between mb-2 m-0">
@@ -101,7 +101,7 @@ const Location = ({addLocation, deleteLocation, locations}) => {
                 </div> 
                     <LocationDiv className="p-3 text-center border rounded" onClick={()=>toggleForm()}>
                         {
-                            !showLocation? <> <i class="fas fa-plus text-primary"></i>  Add Location </> :  <> <i className="fas fa-minus text-danger"></i>  Close Form </>
+                            !showLocation? <> <i className="fas fa-plus text-primary"></i>  Add Location </> :  <> <i className="fas fa-minus text-danger"></i>  Close Form </>
                         } 
                     </LocationDiv>
             </div>

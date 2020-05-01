@@ -5,7 +5,7 @@ import './spinner.css'
 const SpinnerDiv = styled.div`
     display: flex;
     align-items: center;
-    height: 80vh;
+    height: 100vh;
     /* width: 100vh; */
     justify-content: space-around
 `

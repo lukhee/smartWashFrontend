@@ -1,15 +1,10 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 
 const Request = ({request}) => {
     return (
-        <div>
+        <div className="mt-5 p-4">
             <h4> Request Page </h4>
-            <Fragment>
-                { request.length > 0 ? 
-                    <p> Request register </p> : 
-                    <p> please add Request </p>
-                }
-            </Fragment>
+            <p> This page<span className="font-weight-bold text-danger"> request/history, payment and tracking page </span> is in working progress as at 05/01/2020</p>
         </div>
     )
 }
