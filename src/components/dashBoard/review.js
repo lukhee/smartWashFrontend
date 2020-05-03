@@ -1,7 +1,8 @@
 import React from 'react'
 import Moment from 'react-moment'
-// import { Package, Add_on } from '../../images/svg/package/index'
+import PaymentBtn from './payment'
 import { PickUp } from '../../images/svg/cars/index'
+
 
 const review = ({data: { car, location, pkg, add_on, selectedDate, totalCost}, show, onClick}) => {
     return show === 4 &&
@@ -13,7 +14,7 @@ const review = ({data: { car, location, pkg, add_on, selectedDate, totalCost}, s
                     <div style={{fontSize: "14px", textAlign: "left"}}>
                         <h5 style={{fontSize: "14px", margin: "0"}}> {car.brand} </h5>
                         <span style={{fontSize: "14px"}} className="text-secondary"> {location.street + ' ' + location.state} </span>
-                        <h5 style={{fontSize: "14px"}}> <Moment format="YYYY/MM/DD">{selectedDate}</Moment>  </h5>
+                        <h5 style={{fontSize: "14px"}}> <Moment format="LLL">{selectedDate}</Moment>  </h5>
                     </div>
                 </div>
             </div>
@@ -26,7 +27,8 @@ const review = ({data: { car, location, pkg, add_on, selectedDate, totalCost}, s
             </div>
             <p className="d-flex justify-content-between px-3"> <span> Total Cost </span> <span> ₦{totalCost} </span>  </p>
             <div className="text-center mt-2">
-                <button onClick={()=>onClick()} className="btn btn-primary btn-sm px-4"> Book </button> 
+                <PaymentBtn  cost = {totalCost}/>
+                {/* <button onClick={()=>onClick()} className="btn btn-primary btn-sm px-4"> Book </button>  */}
             </div>
         </div>)
 }
