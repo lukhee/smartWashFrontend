@@ -6,14 +6,14 @@ import StripeCheckout from "react-stripe-checkout";
 import api from 'components/ApiUtility/baseApi'
 
 const PaymentBtn = ({cost, history, setAlert}) => {
-    
+
 const publishableKey = "pk_test_4i8Q0wh1w1Qce0RoKW3gkF1K00c0F9UCqN";
 const onToken = (token) => {
     const body = {
                 amount: cost * 100,
                 token: token
         };
-        
+
     api.post("/profile/payment", body)
         .then(response => {
             setAlert("Payment Successful", "success")
