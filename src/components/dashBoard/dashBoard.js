@@ -20,10 +20,10 @@ const ContainerDiv = styled.div`
     overflow: auto;
 `
 
-let boxShadow = {    
+let boxShadow = {
     boxShadow: "-6px 6px 0 0 rgba(0, 123, 255, 0.12)"
 }
- 
+
 const Dashboard = ({user})=> {
     return (
         <ContainerDiv className="container-fluid p-0">

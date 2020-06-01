@@ -199,7 +199,7 @@ export const requestWash = (data, history)=> async dispatch => {
         })
 
         dispatch(setAlert('Reqeust was successfully', 'success'))
-        
+
         history.push('/dashboard')
     } catch (error) {
         const errors = error.response.data.errors;

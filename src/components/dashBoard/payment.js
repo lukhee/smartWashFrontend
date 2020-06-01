@@ -5,17 +5,19 @@ import {connect} from "react-redux"
 import StripeCheckout from "react-stripe-checkout";
 import api from 'components/ApiUtility/baseApi'
 
-const PaymentBtn = ({cost, history, setAlert}) => {
+const PaymentBtn = ({cost, history, setAlert, requestData}) => {
+    console.log(requestData)
 
 const publishableKey = "pk_test_4i8Q0wh1w1Qce0RoKW3gkF1K00c0F9UCqN";
 const onToken = (token) => {
     const body = {
-                amount: cost * 100,
-                token: token
+            amount: cost,
+            token: token
         };
 
     api.post("/profile/payment", body)
         .then(response => {
+            console.log(response)
             setAlert("Payment Successful", "success")
             history.push('/dashboard')
         })

@@ -58,28 +58,27 @@ const Menu = styled.div`
 const NavBar = ({history, logout, auth: { isAuthenticated, isAdmin }}) => {
     const [showMenu, toggleMenu] = useState(false)
     return !isAuthenticated ? null :
-        <NavDIv className="container">
-                <header>
-                    <Nav isAuth = {isAuthenticated} className="navbar navbar-expand-md  fixed-top text-light">
-                        <LogoDiv>
-                            <Logo />
-                        </LogoDiv>
-                        <Link className="navbar-brand text-light pl-2 font-weight-bold" to="/">Smart Wash</Link>
-                            
-                            <MenuButton type="button" onClick={()=> toggleMenu(!showMenu)}>
-                                <span> <i className="fas fa-bars text-white mt-1"></i> </span>
-                            </MenuButton>
-                            <Menu showMenu={showMenu}>
-                                <ul className="navbar-nav ml-auto">
-                                    <Link className="p-2 text-white mr-3" to="/dashboard" onClick={()=>toggleMenu(false)}>DashBoard</Link>
-                                    <Link className="p-2 text-white mr-3" to="/profile" onClick={()=>toggleMenu(false)}>Profile</Link>
-                                    <Link className="p-2 text-white mr-3" to="/request" onClick={()=>toggleMenu(false)}>Request/history</Link>
-                                    <span className="m-auto w-100 btn btn-sm btn-light text-primary" onClick={()=>logout(history)}>Logout</span>
-                                </ul> 
-                            </Menu>
-                    </Nav>
-                </header>
-        </NavDIv>
+    <NavDIv className="container">
+        <header>
+            <Nav isAuth = {isAuthenticated} className="navbar navbar-expand-md  fixed-top text-light">
+                <LogoDiv>
+                    <Logo />
+                </LogoDiv>
+                <Link className="navbar-brand text-light pl-2 font-weight-bold" to="/">Smart Wash</Link>
+                <MenuButton type="button" onClick={()=> toggleMenu(!showMenu)}>
+                    <span> <i className="fas fa-bars text-white mt-1"></i> </span>
+                </MenuButton>
+                <Menu showMenu={showMenu}>
+                    <ul className="navbar-nav ml-auto">
+                        <Link className="p-2 text-white mr-3" to="/dashboard" onClick={()=>toggleMenu(false)}>DashBoard</Link>
+                        <Link className="p-2 text-white mr-3" to="/profile" onClick={()=>toggleMenu(false)}>Profile</Link>
+                        <Link className="p-2 text-white mr-3" to="/request" onClick={()=>toggleMenu(false)}>Request/history</Link>
+                        <span className="m-auto w-100 btn btn-sm btn-light text-primary" onClick={()=>logout(history)}>Logout</span>
+                    </ul>
+                </Menu>
+            </Nav>
+        </header>
+    </NavDIv>
 };
 
 NavBar.propTypes = {

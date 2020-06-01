@@ -85,7 +85,7 @@ const Car = ({cars, addCar, deleteCar}) => {
                             {/* Add new Car */}
                             <div className="col-md-10 m-auto p-2">
                                 {
-                                    showLocation && 
+                                    showLocation &&
                                     <div>
                                         {/* <div className="d-flex justify-content-between border-2 m-3">
                                             <CarsForm className="rounded-circle col-1  p-1"> 
