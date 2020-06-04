@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import DateFormat from '../../utility/DateMoment'
+import {secondary, danger, success} from '../../utility/Colors'
 
 const RequestContainer = styled.div`
     box-shadow: rgb(184, 196, 194) 0px 4px 10px -4px;
@@ -11,10 +12,10 @@ const RequestContainer = styled.div`
 `;
 
 const Status = styled.h6`
-    color : ${p=> p.status === "pending"? 'green' : p.status=== "cancelled" ? "grey": "yellow"};
+    color : ${ p=> p.status === "resolved" ? success : p.status === "pending" ? secondary : danger };
 `
 
-const RequestCard = ({request}) => {
+const RequestCard = ({request, stopRequest}) => {
     const [showMore, toggleMore] = useState(null)
 
     const showMoreHandler = () => {
@@ -31,7 +32,7 @@ const RequestCard = ({request}) => {
                     <DateFormat date={request.date} />
                 </div>
                 <div className='text-center align-content-center'>
-                    <Status status="success" className="text-capitalize"> {request.status} </Status>
+                    <Status status={request.status} className="text-capitalize"> {request.status} </Status>
                     <span className="btn"> <i onClick={showMoreHandler} className={showMore === null  ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i> </span>
                 </div>
             </div>
@@ -50,7 +51,9 @@ const RequestCard = ({request}) => {
                         </div>
                     </div>
                     <div>
-                        <button className="btn btn-sm btn-outline-danger rounded-0 mt-2"> Cancell </button>
+                        { request.status === "pending" &&
+                            <button onClick={()=>stopRequest(request._id)} className="btn btn-sm btn-outline-danger rounded-0 mt-2"> Cancell </button>
+                        }
                     </div>
                 </div>
             }

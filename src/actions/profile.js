@@ -211,3 +211,32 @@ export const requestWash = (data, history)=> async dispatch => {
         })
     }
 }
+
+//  cancell request
+export const cancelRequest = (id)=> async dispatch => {
+    const config = {
+        headers : {
+            'x-auth-token': localStorage.token
+        }
+    }
+
+    try {
+        const res = await api.delete(`profile/request_cancel/`.concat(id), config )
+        console.log(res.data)
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert('Reqeust was successfully', 'success'))
+
+    } catch (error) {
+        const errors = error.response.data.errors;
+        console.log(errors)
+
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}

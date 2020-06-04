@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux'
-import {getProfile} from '../../../actions/profile'
+import {getProfile,  cancelRequest} from '../../../actions/profile'
 import RequestCard from './requestCard'
 import styled from 'styled-components'
 import Loading from '../../layout/spinner/spinner'
@@ -13,20 +13,24 @@ const RequestContainer = styled.div`
     overflow: auto;
 `
 
-const Request = ({profile, getProfile}) => {
+const Request = ({profile, getProfile, cancelRequest}) => {
+    // const [showMore, toggleMore] = useState(null)
     useEffect(()=>{
         getProfile()
     }, [getProfile])
-    console.log(profile)
+
+    const updateRequest = (id="initilal value") => {
+        cancelRequest(id)
+    }
 
     return profile === null ? <Loading/> :
         <>
-                <RequestContainer className="mt-5 p-4 bg-light h-100">
-                    {profile.request.map(req=>(
-                        <RequestCard key={req._id} request={req}/>
-                    ))}
-                    <p> This page<span className="font-weight-bold text-danger"> request/history, payment and tracking page </span> is in working progress as at 05/01/2020</p>
-                </RequestContainer>
+            <RequestContainer className="mt-5 p-4 bg-light h-100">
+                {profile.request.map(req=>(
+                    <RequestCard key={req._id} request={req} stopRequest={updateRequest}/>
+                ))}
+                <p> This page<span className="font-weight-bold text-danger"> request/history, payment and tracking page </span> is in working progress as at 05/01/2020</p>
+            </RequestContainer>
         </>
 }
 
@@ -36,4 +40,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getProfile}) (Request)
+export default connect(mapStateToProps, {getProfile, cancelRequest}) (Request)

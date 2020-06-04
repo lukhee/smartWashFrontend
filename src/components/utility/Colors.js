@@ -1,0 +1,5 @@
+export const primary = "#0073e5"
+export const danger = "#ff0000"
+export const secondary = "#5d7a8a"
+export const warning = "#ff9a00"
+export const success = "#5cb85c"
