@@ -51,8 +51,10 @@ const RequestCard = ({request, stopRequest}) => {
                         </div>
                     </div>
                     <div>
-                        { request.status === "pending" &&
+                        { request.status === "pending" && (<div className="d-flex justify-content-between">
                             <button onClick={()=>stopRequest(request._id)} className="btn btn-sm btn-outline-danger rounded-0 mt-2"> Cancell </button>
+                            <button onClick={()=>alert("working progress...")} className="btn btn-sm btn-success px-3 rounded-0 mt-2"> Track </button>
+                        </div>)
                         }
                     </div>
                 </div>

@@ -8,7 +8,7 @@ const review = ({data: { car, location, pkg, add_on, selectedDate, totalCost}, s
     return show === 4 &&
         (<div className=" col-md-5 m-auto bg-light p-3 border border-white">
             <h5> Review and Pay </h5>
-            <div className="row justify-content-around py-2 border-bottom border-white">
+            <div style={{background: "#3384f02b"}} className="row justify-content-around py-2 shadow mb-3">
                 <div className="col-3 col-md-2 h-100 rounded-circle bg-white p-1"> <PickUp/> </div>
                 <div className="col-7 col-md-8 d-flex align-items-center ml-3 text-capitalize">
                     <div style={{fontSize: "14px", textAlign: "left"}}>
