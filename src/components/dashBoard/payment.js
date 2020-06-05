@@ -3,7 +3,6 @@ import { setAlert } from '../../actions/alert'
 import {withRouter} from 'react-router-dom'
 import {connect} from "react-redux"
 import StripeCheckout from "react-stripe-checkout";
-import api from 'components/ApiUtility/baseApi'
 
 const PaymentBtn = ({cost, history, setAlert, paymentInfo}) => {
 

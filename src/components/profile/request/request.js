@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
 import {getProfile,  cancelRequest} from '../../../actions/profile'
 import RequestCard from './requestCard'
@@ -29,7 +29,7 @@ const Request = ({profile, getProfile, cancelRequest}) => {
                 {profile.request.map(req=>(
                     <RequestCard key={req._id} request={req} stopRequest={updateRequest}/>
                 ))}
-                <p> This page<span className="font-weight-bold text-danger"> request/history, payment and tracking page </span> is in working progress as at 05/01/2020</p>
+                <p> This page<span className="font-weight-bold text-danger"> request/history, payment and tracking page </span> is in working progress</p>
             </RequestContainer>
         </>
 }

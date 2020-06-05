@@ -27,3 +27,9 @@ code {
 *{
   box-sizing: border-box
 }
+
+a:hover {
+    /* color: #0056b3; */
+    text-decoration: none;
+    background: #2e77d8;
+}

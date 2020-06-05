@@ -5,13 +5,6 @@ import { PickUp } from '../../images/svg/cars/index'
 
 
 const review = ({data: { car, location, pkg, add_on, selectedDate, totalCost}, show, onClick}) => {
-    const requestData = {
-        package: add_on.id ? pkg.name.concat(' & ').concat(add_on.name) : pkg.name, // checking if ad_on is selected before adding add_on
-        locationId: location._id,
-        carId: car._id,
-        date: selectedDate,
-        totalCost,
-    }
     return show === 4 &&
         (<div className=" col-md-5 m-auto bg-light p-3 border border-white">
             <h5> Review and Pay </h5>
@@ -37,7 +30,6 @@ const review = ({data: { car, location, pkg, add_on, selectedDate, totalCost}, s
                 <PaymentBtn
                 cost = {totalCost}
                 paymentInfo = {onClick}/>
-                {/* <button className="btn btn-primary" onClick={onClick}> Submit </button> */}
             </div>
         </div>
     )

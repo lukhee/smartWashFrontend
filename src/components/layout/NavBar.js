@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import {Link, withRouter, NavLink} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
@@ -54,6 +54,14 @@ const Menu = styled.div`
 
     }
 `
+const activeClassName = "active"
+const StyledNavLink = styled(NavLink).attrs({
+    activeClassName,
+    })`
+    &.${activeClassName} {
+        background: #2e77d8;
+    }
+`;
 
 const NavBar = ({history, logout, auth: { isAuthenticated, isAdmin }}) => {
     const [showMenu, toggleMenu] = useState(false)
@@ -70,9 +78,9 @@ const NavBar = ({history, logout, auth: { isAuthenticated, isAdmin }}) => {
                 </MenuButton>
                 <Menu showMenu={showMenu}>
                     <ul className="navbar-nav ml-auto">
-                        <Link className="p-2 text-white mr-3" to="/dashboard" onClick={()=>toggleMenu(false)}>DashBoard</Link>
-                        <Link className="p-2 text-white mr-3" to="/profile" onClick={()=>toggleMenu(false)}>Profile</Link>
-                        <Link className="p-2 text-white mr-3" to="/request" onClick={()=>toggleMenu(false)}>Request/history</Link>
+                        <StyledNavLink className="p-2 text-white mr-3" to="/dashboard" onClick={()=>toggleMenu(false)}>DashBoard</StyledNavLink>
+                        <StyledNavLink className="p-2 text-white mr-3" to="/profile" onClick={()=>toggleMenu(false)}>Profile</StyledNavLink>
+                        <StyledNavLink className="p-2 text-white mr-3" to="/request" onClick={()=>toggleMenu(false)}>Request/history</StyledNavLink>
                         <span className="m-auto w-100 btn btn-sm btn-light text-primary" onClick={()=>logout(history)}>Logout</span>
                     </ul>
                 </Menu>
