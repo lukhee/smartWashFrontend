@@ -6,7 +6,7 @@ import {getProfile, requestWash} from '../../actions/profile'
 import {getPackage} from '../../actions/dashBoard'
 import ProfileMenu from './profileMenu'
 import PackageMenu from './packageMenu'
-import PaymentMenu from './paymentMenu'
+import DateTime from './dateTime'
 import ProgressBar from '../layout/progreeBar'
 import Spinner from '../layout/spinner/spinner'
 import Review from './review'
@@ -64,19 +64,20 @@ const Booking = ({getProfile, getPackage, requestWash, history, profile, dashboa
         })
     }
 
-    const submitBooking = ()=> {
+    const submitBooking = (paymentData)=> {
         let addOn = ''
         if(add_on.name !== ''){
             addOn = ' , ' + add_on.name
         }
 
-        const data = {
+        const requestData = {
             carId: car._id,
             locationId: location._id,
             date: selectedDate,
             totalCost: totalCost,
             package: pkg.name + addOn
         }
+        const data = { ...paymentData, ...requestData}
         requestWash(data, history)
     }
 
@@ -115,7 +116,7 @@ const Booking = ({getProfile, getPackage, requestWash, history, profile, dashboa
                             state_add_on_id = {add_on.id}
                         />
 
-                        <PaymentMenu
+                        <DateTime
                             selectedDate={selectedDate}
                             onClick = {(e)=>onClick(e)}
                             onChange = {(date)=>onChange(date)}
@@ -127,7 +128,7 @@ const Booking = ({getProfile, getPackage, requestWash, history, profile, dashboa
                             data={formData}
                             show={showValue}
                             totalcost={totalCost}
-                            onClick={()=>submitBooking()}/>
+                            onClick={(data)=>submitBooking(data)}/>
                     </div>
                 </div>
 
