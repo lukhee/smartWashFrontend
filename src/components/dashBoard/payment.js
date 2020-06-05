@@ -5,8 +5,7 @@ import {connect} from "react-redux"
 import StripeCheckout from "react-stripe-checkout";
 import api from 'components/ApiUtility/baseApi'
 
-const PaymentBtn = ({cost, history, setAlert, requestData}) => {
-    console.log(requestData)
+const PaymentBtn = ({cost, history, setAlert, paymentInfo}) => {
 
 const publishableKey = "pk_test_4i8Q0wh1w1Qce0RoKW3gkF1K00c0F9UCqN";
 const onToken = (token) => {
@@ -15,16 +14,7 @@ const onToken = (token) => {
             token: token
         };
 
-    api.post("/profile/payment", body)
-        .then(response => {
-            console.log(response)
-            setAlert("Payment Successful", "success")
-            history.push('/dashboard')
-        })
-        .catch(error => {
-            console.log("Payment Error: ", error);
-            setAlert("Error in paymnet, please try again", "danger")
-        });
+        paymentInfo(body)
     }
 
     return (

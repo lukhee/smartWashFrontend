@@ -34,10 +34,10 @@ const review = ({data: { car, location, pkg, add_on, selectedDate, totalCost}, s
             </div>
             <p className="d-flex justify-content-between px-3"> <span> Total Cost </span> <span> ₦{totalCost} </span>  </p>
             <div className="text-center mt-2">
-                {/* <PaymentBtn
+                <PaymentBtn
                 cost = {totalCost}
-                requestData = {requestData}/> */}
-                <button className="btn btn-primary" onClick={onClick}> Submit </button>
+                paymentInfo = {onClick}/>
+                {/* <button className="btn btn-primary" onClick={onClick}> Submit </button> */}
             </div>
         </div>
     )
