@@ -1,10 +1,12 @@
 import { 
     LOGIN_SUCCESS,
-    REGISTER_SUCCESS, 
-    REGISTER_FAILURE, 
-    AUTH_ERROR, 
-    USER_LOADED, 
-    LOGOUT, 
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE,
+    AUTH_ERROR,
+    USER_LOADED,
+    UPDATE_PROFILE,
+    LOGOUT,
+    UPDATE_USER,
     CLEAR_PROFILE } from './consTypes'
 import { setAlert } from './alert'
 import api from 'components/ApiUtility/baseApi'
@@ -82,6 +84,35 @@ export const register = ({name, email, password})=> async dispatch => {
         if(errors){
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
         }
+
+        dispatch({
+            type: REGISTER_FAILURE,
+        })
+    }
+}
+
+export const updateUser = (data) => async dispatch=> {
+    const config = {
+        headers : {
+            'Content-Type': 'application/json',
+            'x-auth-token': localStorage.token
+        }
+    }
+    try {
+        const res = await api.put('/user/update_user', data, config )
+        dispatch({
+            type: UPDATE_USER,
+            payload: data.name
+        })
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: data.home
+        })
+
+
+        dispatch(setAlert("user profile updated successfully", 'success'))
+    } catch (error) {
+        console.log(error)
 
         dispatch({
             type: REGISTER_FAILURE,

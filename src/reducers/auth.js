@@ -4,7 +4,7 @@ import {
     AUTH_ERROR, 
     USER_LOADED, 
     LOGIN_SUCCESS, 
-    // LOGIN_FAIL, 
+    UPDATE_USER, 
     LOGOUT, 
     // ACCOUNT_DELETED
  } from "../actions/consTypes"
@@ -26,7 +26,14 @@ export default function(state=initialState, action){
             user: payload,
             loading: false,
             isAuthenticated: true
-        }
+        } 
+        // case UPDATE_USER: 
+        // return {
+        //     ...state,
+        //     user: payload,
+        //     loading: false,
+        //     isAuthenticated: true
+        // }
         case REGISTER_SUCCESS:
             case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.token)

@@ -15,3 +15,4 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const DELETE_LOCATION = 'DELETE_LOCATION'
 export const GET_PACKAGE = 'GET_PACKAGE'
 export const PACKAGE_ERROR = 'PACKAGE_ERROR'
+export const UPDATE_USER = 'UPDATE_USER'

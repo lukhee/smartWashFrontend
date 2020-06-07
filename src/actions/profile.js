@@ -3,6 +3,8 @@ import {
     UPDATE_PROFILE,
     UPDATE_ERROR,
     PROFILE_FAILED,
+    CLEAR_PROFILE,
+    LOGOUT
     } from './consTypes'
 import { setAlert } from './alert'
 import api from 'components/ApiUtility/baseApi'
@@ -229,6 +231,41 @@ export const cancelRequest = (id)=> async dispatch => {
         })
 
         dispatch(setAlert('Reqeust was successfully', 'success'))
+
+    } catch (error) {
+        const errors = error.response.data.errors;
+        console.log(errors)
+
+        dispatch({
+            type: UPDATE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
+//  Desc: delete Account
+export const deleteAccount = (history)=> async dispatch => {
+    if(!window.confirm("Are you sure you want to delete the account")) return
+
+    const config = {
+        headers : {
+            'x-auth-token': localStorage.token
+        }
+    }
+
+    try {
+        const res = await api.delete(`profile/delete_account`, config )
+        dispatch({
+            type: CLEAR_PROFILE,
+            payload: {}
+        })
+
+        dispatch({
+            type: LOGOUT,
+        })
+
+        dispatch(setAlert(res.data.msg, 'success'))
+        history.push("/")
 
     } catch (error) {
         const errors = error.response.data.errors;

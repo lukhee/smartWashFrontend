@@ -1,6 +1,7 @@
 import React, {useEffect, useState, Fragment} from 'react'
 import { connect } from 'react-redux'
-import { getProfile, createProfile } from '../../actions/profile'
+import { getProfile, createProfile, deleteAccount } from '../../actions/profile'
+import { updateUser } from '../../actions/auth'
 import PropTypes from 'prop-types'
 import Car from './car'
 import Location from './location'
@@ -15,7 +16,7 @@ const ProfileDiv = styled.div`
     padding-top: 80px;
 `
 
-const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth: { isAuthenticated, user} }) => {
+const Profile = ({getProfile, createProfile, deleteAccount, updateUser, history, profile: { profile, loading}, auth: { isAuthenticated, user} }) => {
     useEffect(()=>{
         getProfile()
     }, [getProfile])
@@ -67,6 +68,7 @@ const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth:
                                 <div className="col-md-3">
                                     <UserPage user={user}
                                         phone_no = {profile.contact.home}
+                                        updateUser = {updateUser}
                                     />
                                 </div>
                                 <div className="col-md-8">
@@ -78,7 +80,7 @@ const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth:
                                 </div>
                             </div>
                             <div className="text-right pr-4">
-                                <button className="btn btn-outline-danger btn-sm px-5 mb-4"> Delete Account </button>
+                                <button onClick={()=>deleteAccount(history)} className="btn btn-outline-danger btn-sm px-5 mb-4"> Delete Account </button>
                             </div>
                         </>
                 }
@@ -89,7 +91,9 @@ const Profile = ({getProfile, createProfile, profile: { profile, loading}, auth:
 Profile.propTypes = {
     getProfile : PropTypes.func.isRequired,
     createProfile : PropTypes.func.isRequired,
-    profile : PropTypes.object.isRequired
+    updateUser : PropTypes.func.isRequired,
+    profile : PropTypes.object.isRequired,
+    deleteAccount : PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -99,4 +103,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getProfile, createProfile}) (Profile)
+export default connect(mapStateToProps, {getProfile, createProfile, deleteAccount, updateUser}) (Profile)

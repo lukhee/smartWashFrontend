@@ -81,7 +81,7 @@ const NavBar = ({history, logout, auth: { isAuthenticated, isAdmin }}) => {
                         <StyledNavLink className="p-2 text-white mr-3" to="/dashboard" onClick={()=>toggleMenu(false)}>DashBoard</StyledNavLink>
                         <StyledNavLink className="p-2 text-white mr-3" to="/profile" onClick={()=>toggleMenu(false)}>Profile</StyledNavLink>
                         <StyledNavLink className="p-2 text-white mr-3" to="/request" onClick={()=>toggleMenu(false)}>Request/history</StyledNavLink>
-                        <span className="m-auto w-100 btn btn-sm btn-light text-primary" onClick={()=>logout(history)}>Logout</span>
+                        <span className="m-auto w-100 rounded-0 btn btn-sm btn-light text-primary" onClick={()=>logout(history)}>Logout</span>
                     </ul>
                 </Menu>
             </Nav>

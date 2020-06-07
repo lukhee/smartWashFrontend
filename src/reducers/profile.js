@@ -3,7 +3,7 @@ import {
     PROFILE_FAILED,
     UPDATE_PROFILE,
     UPDATE_ERROR,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,
  } from "../actions/consTypes"
 
 const initialState = {
@@ -24,12 +24,13 @@ export default function(state=initialState, action){
         }
         case PROFILE_FAILED:
         case CLEAR_PROFILE:
+        localStorage.removeItem('token');
         return {
             ...state,
             profile: null,
             loading: false,
             error: payload
-        }  
+        }
         case UPDATE_ERROR:
         return {
             ...state,
