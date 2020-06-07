@@ -40,8 +40,8 @@ const LoginPage = ({login, isAuthenticated}) => {
 
     return (
         <div style={{height: "100vh"}} className="container-fluid row m-0 bg-primary justify-content-around align-items-center">
-            <div className="col-sm-4 p-3"> 
-                <LogoDiv> 
+            <div className="col-sm-4 p-3">
+                <LogoDiv>
                     <Logo />
                 </LogoDiv>
 
@@ -53,19 +53,19 @@ const LoginPage = ({login, isAuthenticated}) => {
 
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <div className="form-group">
-                            <input className="form-control rounded-0 bg-light border-0" 
-                                type="email" 
-                                name="email" 
-                                value={email} 
+                            <input className="form-control rounded-0 bg-light"
+                                type="email"
+                                name="email"
+                                value={email}
                                 onChange={(e)=>onChange(e)}
-                                placeholder="Email here" 
+                                placeholder="Email here"
                                 required />
                         </div>
                         <div className="form-group">
-                            <input className="form-control rounded-0 bg-light border-0" 
-                                type="password" 
-                                name="password" 
-                                value={password} 
+                            <input className="form-control rounded-0 bg-light"
+                                type="password"
+                                name="password"
+                                value={password}
                                 onChange={(e)=>onChange(e)}
                                 placeholder="Password" />
                         </div>

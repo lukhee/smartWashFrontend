@@ -106,7 +106,7 @@ export const updateUser = (data) => async dispatch=> {
         })
         dispatch({
             type: UPDATE_PROFILE,
-            payload: data.home
+            payload: res.data
         })
 
 

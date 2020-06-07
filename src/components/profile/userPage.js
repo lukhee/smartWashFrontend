@@ -23,6 +23,7 @@ const UserPage = ({user, phone_no, updateUser}) => {
     const onSubmitHandler = (e) => {
         e.preventDefault()
         updateUser(userInfo)
+        toggleEdit(false)
     }
     return (
         <UserDiv className="p-3 rounded text-center bg-white mb-3">
@@ -34,7 +35,7 @@ const UserPage = ({user, phone_no, updateUser}) => {
                         <input name="name" onChange={onChange} value={name} required className="form-control mb-2 w-75 mx-auto text-center form-control-sm" type="text" placeholder="full name"/>
                     }
                     {!editField?
-                        <p className="text-secondary"> {phone_no} </p> :
+                        <p className="text-secondary"> +234-{phone_no} </p> :
                         <input name="home" onChange={onChange} value={home} required className="form-control mb-2 w-75 mx-auto text-center form-control-sm" type="text" placeholder="full name"/>
                     }
                     <p className="text-warning"> {user.email} </p>
